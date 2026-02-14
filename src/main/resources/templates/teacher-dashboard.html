@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Teacher Dashboard</title>
+</head>
+<body>
+
+<h2>Teacher Dashboard</h2>
+
+<p>Welcome, <span th:text="${teacher.name}">Teacher</span></p>
+
+<hr/>
+
+<h3>Actions</h3>
+
+<ul>
+    <li>
+        <a th:href="@{/students/add}">Create Student</a>
+    </li>
+    <li>
+        <a th:href="@{/courses/add}">Add Course</a>
+    </li>
+    <li>
+        <a th:href="@{/teacher/logout}">Logout</a>
+    </li>
+</ul>
+
+</body>
+</html>

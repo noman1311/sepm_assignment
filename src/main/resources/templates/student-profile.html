@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Profile</title>
+</head>
+<body>
+
+<h2>Student Profile</h2>
+
+<p>
+    <strong>ID:</strong>
+    <span th:text="${student.id}"></span>
+</p>
+
+<form th:action="@{/student/update}" th:object="${student}" method="post">
+
+    <label for="name">Name:</label>
+    <input id="name" type="text" th:field="*{name}" /><br/><br/>
+
+    <label for="hometown">Hometown:</label>
+    <input id="hometown" type="text" th:field="*{hometown}" /><br/><br/>
+
+    <label for="semester">Semester:</label>
+    <input id="semester" type="number" th:field="*{semester}" /><br/><br/>
+
+    <label for="year">Year:</label>
+    <input id="year" type="number" th:field="*{year}" /><br/><br/>
+
+    <button type="submit">Update Profile</button>
+</form>
+
+</body>
+</html>
