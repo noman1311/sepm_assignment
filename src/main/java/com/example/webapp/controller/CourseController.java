@@ -42,4 +42,15 @@ public class CourseController {
         courseRepository.save(course);
         return "redirect:/teacher/dashboard";
     }
+    @GetMapping
+    public String listCourses(Model model, HttpSession session) {
+
+        if (session.getAttribute("teacher") == null) {
+            return "redirect:/teacher/login";
+        }
+
+        model.addAttribute("courses", courseRepository.findAll());
+        return "courses";
+    }
+
 }

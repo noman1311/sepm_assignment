@@ -18,8 +18,18 @@
     <label>Password:</label>
     <input type="password" th:field="*{password}" required /><br/><br/>
 
+    <label>Assign Courses:</label>
+    <select multiple th:field="*{courseIds}">
+        <option th:each="course : ${courses}"
+                th:value="${course.id}"
+                th:text="${course.code + ' - ' + course.title}">
+        </option>
+    </select>
+
+    <br/><br/>
     <button type="submit">Create Student</button>
 </form>
+
 
 
 </body>

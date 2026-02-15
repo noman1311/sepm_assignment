@@ -12,7 +12,7 @@
     <span th:text="${student.id}"></span>
 </p>
 
-<form th:action="@{/student/update}" th:object="${student}" method="post">
+<form th:action="@{/students/update}" th:object="${student}" method="post">
 
     <label for="name">Name:</label>
     <input id="name" type="text" th:field="*{name}" /><br/><br/>
@@ -28,6 +28,15 @@
 
     <button type="submit">Update Profile</button>
 </form>
+
+<h3>Assigned Courses</h3>
+
+<ul>
+    <li th:each="course : ${student.courses}">
+        <span th:text="${course.code}"></span> -
+        <span th:text="${course.title}"></span>
+    </li>
+</ul>
 
 </body>
 </html>

@@ -1,12 +1,13 @@
 package com.example.webapp.service;
 
 import com.example.webapp.dto.StudentDTO;
+import com.example.webapp.entity.Course;
 import com.example.webapp.entity.Student;
 import com.example.webapp.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
+import com.example.webapp.repository.CourseRepository;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,11 +15,13 @@ import java.util.Optional;
 public class StudentService {
 
     private final StudentRepository studentRepository;
+    private final CourseRepository courseRepository;
     private final ModelMapper modelMapper;
 
-    public StudentService(StudentRepository studentRepository, ModelMapper modelMapper) {
+    public StudentService(StudentRepository studentRepository, ModelMapper modelMapper,  CourseRepository courseRepository) {
         this.studentRepository = studentRepository;
         this.modelMapper = modelMapper;
+        this.courseRepository = courseRepository;
     }
 
 
@@ -35,6 +38,9 @@ public class StudentService {
             throw new RuntimeException("Student ID already exists");
         }
         Student student = modelMapper.map(studentDTO, Student.class);
+        List<Course> courses = courseRepository.findAllById(studentDTO.getCourseIds());
+
+        student.setCourses(courses);
         return studentRepository.save(student);
     }
     public Student login(Long id, String password) {
@@ -58,6 +64,10 @@ public class StudentService {
         studentRepository.save(existing);
     }
 
+    public Student getStudentWithCourses(Long id) {
+        return studentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+    }
 
 
 }
