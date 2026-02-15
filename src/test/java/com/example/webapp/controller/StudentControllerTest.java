@@ -29,4 +29,28 @@ class StudentControllerTest {
     @Test
     void studentLoginPage() {
     }
+
+    @Test
+    void testGetStudents() {
+    }
+
+    @Test
+    void testAddStudent() {
+    }
+
+    @Test
+    void testStoreStudent() {
+    }
+
+    @Test
+    void testLogin() {
+    }
+
+    @Test
+    void testStudentProfile() {
+    }
+
+    @Test
+    void testStudentLoginPage() {
+    }
 }
